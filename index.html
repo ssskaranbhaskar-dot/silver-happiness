@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Propose Day</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    color: white;
+    overflow: hidden;
+}
+
+/* CONTENT */
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 60px 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    background: #ff4757;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff2e43;
+    transform: scale(1.05);
+}
+
+#message {
+    display: none;
+    margin-top: 30px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+a {
+    color: yellow;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* FALLING HEARTS */
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 24px;
+    animation: fall linear forwards;
+    color: rgba(255,255,255,0.8);
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Background Music -->
+<audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="content">
+    <h1>Happy Propose Day 💖</h1>
+    <p>Ek chhota sa surprise tumhare liye 😌</p>
+
+    <button onclick="revealMessage()">Reveal 💌</button>
+
+    <div id="message">
+        <p style="font-size:1.3em;">
+            I like you a lot…<br>
+            Aur main chahta hoon ki tum meri ho ❤️
+        </p>
+
+        <p>
+            Play this cute game 👉 
+            <a href="https://www.crazygames.com/game/love-letter" target="_blank">
+                Love Letter 🎮
+            </a>
+        </p>
+    </div>
+</div>
+
+<script>
+/* Reveal Message + Play Music */
+function revealMessage() {
+    document.getElementById("message").style.display = "block";
+    document.getElementById("bgMusic").play();
+}
+
+/* Falling Hearts Generator */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
